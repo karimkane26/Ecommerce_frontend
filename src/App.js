@@ -48,7 +48,6 @@ import { PaymentProvider } from "./Contexts/PaymentContext";
 import { OrdersProvider } from "./Contexts/OrdersContext";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
-
 const App = () => {
   return (
     <AuthProvider>

@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState,} from 'react';
-import axios from 'axios';
-import {PRODUCT_URL} from "../constants.js";
+import React, { createContext, useContext, useState } from "react";
+import axios from "axios";
+import { PRODUCT_URL } from "../constants.js";
 // Créer le contexte
 const ProductContext = createContext();
 
@@ -15,7 +15,7 @@ export const ProductProvider = ({ children }) => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get('http://localhost:5000/api/products');
+      const { data } = await axios.get("http://localhost:5000/api/products");
       setProducts(data);
       setError(null);
     } catch (err) {
