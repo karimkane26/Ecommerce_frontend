@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import axios from "axios";
-import { PRODUCT_URL } from "../constants.js";
+import api from "../components/axios";
+
 // Créer le contexte
 const ProductContext = createContext();
 
@@ -11,11 +11,46 @@ export const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Définir la base de l'URL pour les requêtes
+  // const baseURL = process.env.REACT_APP_BACKEND_URL;
+
+  // Fonction pour récupérer tous les produits
+  // const fetchProducts = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const { data } = await api.get(`${baseURL}api/products`);
+
+  //     setProducts(data);
+
+  //     setError(null);
+  //   } catch (err) {
+  //     setError(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // // Fonction pour récupérer les détails d'un produit
+  // const fetchProductDetails = async (productId) => {
+  //   setLoading(true);
+  //   try {
+  //     const { data } = await api.get(`${baseURL}api/products/${productId}`);
+  //     setProductDetails((prevDetails) => ({
+  //       ...prevDetails,
+  //       [productId]: data,
+  //     }));
+  //     setError(null);
+  //   } catch (err) {
+  //     setError(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   // Fonction pour récupérer tous les produits
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/products");
+      const { data } = await api.get("/products"); // Pas besoin d'ajouter baseURL
       setProducts(data);
       setError(null);
     } catch (err) {
@@ -29,7 +64,7 @@ export const ProductProvider = ({ children }) => {
   const fetchProductDetails = async (productId) => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`${PRODUCT_URL}/${productId}`);
+      const { data } = await api.get(`/products/${productId}`);
       setProductDetails((prevDetails) => ({
         ...prevDetails,
         [productId]: data,
